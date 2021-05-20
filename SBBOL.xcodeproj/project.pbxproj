@@ -9,23 +9,29 @@
 /* Begin PBXBuildFile section */
 		B1C8BAAC264DC83E004C69E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C8BAAB264DC83E004C69E7 /* AppDelegate.swift */; };
 		B1C8BAAE264DC83E004C69E7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C8BAAD264DC83E004C69E7 /* SceneDelegate.swift */; };
-		B1C8BAB0264DC83E004C69E7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C8BAAF264DC83E004C69E7 /* ViewController.swift */; };
+		B1C8BAB0264DC83E004C69E7 /* TranslateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C8BAAF264DC83E004C69E7 /* TranslateTableViewController.swift */; };
 		B1C8BAB3264DC83E004C69E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1C8BAB1264DC83E004C69E7 /* Main.storyboard */; };
 		B1C8BAB6264DC83E004C69E7 /* SBBOL.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B1C8BAB4264DC83E004C69E7 /* SBBOL.xcdatamodeld */; };
 		B1C8BAB8264DC842004C69E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1C8BAB7264DC842004C69E7 /* Assets.xcassets */; };
 		B1C8BABB264DC842004C69E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1C8BAB9264DC842004C69E7 /* LaunchScreen.storyboard */; };
+		B1E5112026510EDE006E9E94 /* AzureTranslate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E5111F26510EDE006E9E94 /* AzureTranslate.swift */; };
+		B1E51124265174CA006E9E94 /* TranslateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E51123265174CA006E9E94 /* TranslateTableViewCell.swift */; };
+		B1E511272651C752006E9E94 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E511262651C752006E9E94 /* CoreData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B1C8BAA8264DC83E004C69E7 /* SBBOL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SBBOL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1C8BAAB264DC83E004C69E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1C8BAAD264DC83E004C69E7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B1C8BAAF264DC83E004C69E7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B1C8BAAF264DC83E004C69E7 /* TranslateTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateTableViewController.swift; sourceTree = "<group>"; };
 		B1C8BAB2264DC83E004C69E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B1C8BAB5264DC83E004C69E7 /* SBBOL.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SBBOL.xcdatamodel; sourceTree = "<group>"; };
 		B1C8BAB7264DC842004C69E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B1C8BABA264DC842004C69E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B1C8BABC264DC842004C69E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B1E5111F26510EDE006E9E94 /* AzureTranslate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureTranslate.swift; sourceTree = "<group>"; };
+		B1E51123265174CA006E9E94 /* TranslateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateTableViewCell.swift; sourceTree = "<group>"; };
+		B1E511262651C752006E9E94 /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +64,83 @@
 		B1C8BAAA264DC83E004C69E7 /* SBBOL */ = {
 			isa = PBXGroup;
 			children = (
-				B1C8BAAB264DC83E004C69E7 /* AppDelegate.swift */,
-				B1C8BAAD264DC83E004C69E7 /* SceneDelegate.swift */,
-				B1C8BAAF264DC83E004C69E7 /* ViewController.swift */,
-				B1C8BAB1264DC83E004C69E7 /* Main.storyboard */,
-				B1C8BAB7264DC842004C69E7 /* Assets.xcassets */,
-				B1C8BAB9264DC842004C69E7 /* LaunchScreen.storyboard */,
+				B1E5111E26509014006E9E94 /* App */,
+				B1E5111826508F29006E9E94 /* Network */,
+				B1E511252651C72A006E9E94 /* CoreData */,
+				B1E5111D26508FE9006E9E94 /* Helpers */,
+				B1E5111A26508FAD006E9E94 /* Resources */,
+				B1E5111926508F96006E9E94 /* Models */,
+				B1E5111C26508FD6006E9E94 /* ViewControllers */,
+				B1E5111B26508FBF006E9E94 /* Storyboards */,
 				B1C8BABC264DC842004C69E7 /* Info.plist */,
 				B1C8BAB4264DC83E004C69E7 /* SBBOL.xcdatamodeld */,
 			);
 			path = SBBOL;
+			sourceTree = "<group>";
+		};
+		B1E5111826508F29006E9E94 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				B1E5111F26510EDE006E9E94 /* AzureTranslate.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		B1E5111926508F96006E9E94 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B1E5111A26508FAD006E9E94 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B1C8BAB7264DC842004C69E7 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		B1E5111B26508FBF006E9E94 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				B1C8BAB1264DC83E004C69E7 /* Main.storyboard */,
+				B1C8BAB9264DC842004C69E7 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		B1E5111C26508FD6006E9E94 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B1C8BAAF264DC83E004C69E7 /* TranslateTableViewController.swift */,
+				B1E51123265174CA006E9E94 /* TranslateTableViewCell.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B1E5111D26508FE9006E9E94 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		B1E5111E26509014006E9E94 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				B1C8BAAB264DC83E004C69E7 /* AppDelegate.swift */,
+				B1C8BAAD264DC83E004C69E7 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		B1E511252651C72A006E9E94 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				B1E511262651C752006E9E94 /* CoreData.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,8 +213,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1E5112026510EDE006E9E94 /* AzureTranslate.swift in Sources */,
 				B1C8BAB6264DC83E004C69E7 /* SBBOL.xcdatamodeld in Sources */,
-				B1C8BAB0264DC83E004C69E7 /* ViewController.swift in Sources */,
+				B1E51124265174CA006E9E94 /* TranslateTableViewCell.swift in Sources */,
+				B1C8BAB0264DC83E004C69E7 /* TranslateTableViewController.swift in Sources */,
+				B1E511272651C752006E9E94 /* CoreData.swift in Sources */,
 				B1C8BAAC264DC83E004C69E7 /* AppDelegate.swift in Sources */,
 				B1C8BAAE264DC83E004C69E7 /* SceneDelegate.swift in Sources */,
 			);
@@ -220,7 +296,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -275,7 +351,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
