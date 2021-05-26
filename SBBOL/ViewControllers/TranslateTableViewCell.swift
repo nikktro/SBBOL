@@ -9,8 +9,7 @@ import UIKit
 
 class TranslateTableViewCell: UITableViewCell, UITextViewDelegate {
     
-    let azure = AzureTranslate()
-    let coreData = CoreData()
+    var textChanged: ((String) -> Void)?
     
     @IBOutlet weak var textView: UITextView!
     
@@ -18,19 +17,13 @@ class TranslateTableViewCell: UITableViewCell, UITextViewDelegate {
         super.awakeFromNib()
         textView.delegate = self
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    
+    func textChanged(action: @escaping (String) -> Void) {
+        self.textChanged = action
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.tag == 0 {
-            azure.getTranslation(for: textView.text)
-            azure.completionHandler = { translatedText in
-                self.coreData.saveData(textView.text, translatedText)
-                self.coreData.fetchData()
-            }
-        }
+        textChanged?(textView.text)
     }
-
+    
 }
