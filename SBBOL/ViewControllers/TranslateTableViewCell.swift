@@ -26,4 +26,9 @@ class TranslateTableViewCell: UITableViewCell, UITextViewDelegate {
         textChanged?(textView.text)
     }
     
+    // instant word translation
+//    func textViewDidChange(_ textView: UITextView) {
+//        textChanged?(textView.text)
+//    }
+    
 }

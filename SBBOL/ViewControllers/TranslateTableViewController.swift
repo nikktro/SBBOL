@@ -15,6 +15,8 @@ class TranslateTableViewController: UIViewController {
     let azure = AzureTranslate()
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var sourceLanguageButton: UIButton!
+    @IBOutlet weak var targetLanguageButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +29,8 @@ class TranslateTableViewController: UIViewController {
         coreData.fetchData()
         textToTranslate = (coreData.translates.last?.source) ?? "Enter text to translate"
         translatedText = (coreData.translates.last?.target) ?? "Tap to translate"
-
+        sourceLanguageButton.setTitle("en", for: .normal)
+        targetLanguageButton.setTitle("ru", for: .normal)
     }
 
     func hideKeyboardWhenTappedAround() {
@@ -37,6 +40,14 @@ class TranslateTableViewController: UIViewController {
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    @IBAction func toggleLanguageButton() {
+        let sourceLanguage = sourceLanguageButton.titleLabel?.text
+        let targetLanguage = targetLanguageButton.titleLabel?.text
+        sourceLanguageButton.setTitle(targetLanguage, for: .normal)
+        targetLanguageButton.setTitle(sourceLanguage, for: .normal)
+        
     }
     
 }
@@ -54,6 +65,8 @@ extension TranslateTableViewController: UITableViewDataSource, UITableViewDelega
         if indexPath.row % 2 == 0 {
             cell.textView.text = textToTranslate
             cell.textChanged { [weak self] (inputed: String) in
+                self?.azure.sourceLanguage = self?.sourceLanguageButton.titleLabel?.text
+                self?.azure.targetLanguage = self?.targetLanguageButton.titleLabel?.text
                 self?.azure.getTranslation(for: inputed)
                 self?.azure.completionHandler = { [weak self] translated in
                     self?.textToTranslate = inputed
@@ -68,6 +81,26 @@ extension TranslateTableViewController: UITableViewDataSource, UITableViewDelega
         
         return cell
     }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let changeLanguage = segue.destination as? ChangeLanguageViewController {
+            if segue.identifier == "source" {
+                changeLanguage.languageTitle = "Source language"
+                changeLanguage.languageHandler = { language in
+                    self.sourceLanguageButton.setTitle(language, for: .normal)
+                    self.azure.sourceLanguage = language
+                }
+            } else if segue.identifier == "target" {
+                changeLanguage.languageTitle = "Target language"
+                changeLanguage.languageHandler = { language in
+                    self.targetLanguageButton.setTitle(language, for: .normal)
+                    self.azure.targetLanguage = language
+                }
+            }
+        }
+    }
+    
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

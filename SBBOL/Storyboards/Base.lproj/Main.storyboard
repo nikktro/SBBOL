@@ -29,12 +29,15 @@
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="jJ2-GM-jl8" kind="show" id="7fh-cO-9gG"/>
+                                                    <segue destination="jJ2-GM-jl8" kind="show" identifier="source" id="7fh-cO-9gG"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tql-RX-nWQ">
                                                 <rect key="frame" x="76" y="0.0" width="24" height="30"/>
                                                 <state key="normal" image="icons8-resize-horizontal-24"/>
+                                                <connections>
+                                                    <action selector="toggleLanguageButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="5LI-3v-HSg"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3J8-Fy-fz1">
                                                 <rect key="frame" x="126" y="0.0" width="54" height="30"/>
@@ -42,7 +45,7 @@
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="jJ2-GM-jl8" kind="show" id="zoi-WL-MwC"/>
+                                                    <segue destination="jJ2-GM-jl8" kind="show" identifier="target" id="zoi-WL-MwC"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -113,17 +116,19 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="icons8-translation-25" id="gbM-8U-xNw"/>
                     <connections>
+                        <outlet property="sourceLanguageButton" destination="sxV-gG-bw6" id="gQx-zV-glh"/>
                         <outlet property="tableView" destination="ahj-Xr-qBE" id="oeU-XZ-1yH"/>
+                        <outlet property="targetLanguageButton" destination="3J8-Fy-fz1" id="5t1-e4-SA2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="934.78260869565224" y="-314.0625"/>
         </scene>
-        <!--View Controller-->
+        <!--Change Language View Controller-->
         <scene sceneID="X5p-lv-uVc">
             <objects>
-                <viewController id="jJ2-GM-jl8" sceneMemberID="viewController">
+                <viewController id="jJ2-GM-jl8" customClass="ChangeLanguageViewController" customModule="SBBOL" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="y27-In-cjE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -135,9 +140,12 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="Source language" id="TUM-ZW-Lx2">
+                                    <navigationItem title="title" id="TUM-ZW-Lx2">
                                         <barButtonItem key="leftBarButtonItem" systemItem="stop" id="IuJ-3f-KSX">
                                             <color key="tintColor" systemColor="labelColor"/>
+                                            <connections>
+                                                <action selector="closeButtronPressed:" destination="jJ2-GM-jl8" id="izl-pp-wnz"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -155,6 +163,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="jJ2-GM-jl8" id="QIr-1y-Ytc"/>
+                                    <outlet property="delegate" destination="jJ2-GM-jl8" id="fD8-up-5wd"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4WD-OY-Hjp"/>
@@ -170,15 +182,19 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1Zq-Br-qUa"/>
+                    <connections>
+                        <outlet property="navigationTitle" destination="TUM-ZW-Lx2" id="xYW-GX-xo4"/>
+                        <outlet property="tableView" destination="M4s-HO-5W1" id="Ofs-Az-0U5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SYN-8M-Xl4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="934" y="379"/>
         </scene>
-        <!--View Controller-->
+        <!--History View Controller-->
         <scene sceneID="ehi-DA-A4z">
             <objects>
-                <viewController id="Nft-D5-EsZ" sceneMemberID="viewController">
+                <viewController id="Nft-D5-EsZ" customClass="HistoryViewController" customModule="SBBOL" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nvx-oG-v6T">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -195,7 +211,7 @@
                                             <textInputTraits key="textInputTraits"/>
                                         </searchBar>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="history" rowHeight="60" id="W5N-1n-dX3">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="history" rowHeight="60" id="W5N-1n-dX3" customClass="HistoryCell" customModule="SBBOL" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="68.5" width="414" height="60"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="W5N-1n-dX3" id="WEr-Ai-vkT">
@@ -227,6 +243,10 @@
                                                         <constraint firstItem="nvU-JB-B89" firstAttribute="leading" secondItem="7k1-2A-dkO" secondAttribute="trailing" constant="71" id="x8D-W1-8Ie"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="inputTextLabel" destination="7k1-2A-dkO" id="giO-ZG-CzG"/>
+                                                    <outlet property="translatedTextLabel" destination="nvU-JB-B89" id="mSm-Fl-ePN"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
@@ -240,6 +260,9 @@
                                             <navigationItem title="History" id="A5x-ri-LzI">
                                                 <barButtonItem key="rightBarButtonItem" systemItem="trash" id="ztq-jk-JPV">
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <connections>
+                                                        <action selector="DeleteHistoryData:" destination="Nft-D5-EsZ" id="hNR-un-FoR"/>
+                                                    </connections>
                                                 </barButtonItem>
                                             </navigationItem>
                                         </items>
@@ -267,6 +290,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="icons8-stack-of-paper-25" id="CEL-wM-AyX"/>
+                    <connections>
+                        <outlet property="tableView" destination="wTa-Ej-htL" id="Bx4-wf-Mgu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SiC-vp-gNn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

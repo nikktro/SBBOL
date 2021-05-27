@@ -11,13 +11,15 @@ import UIKit
 class AzureTranslate {
     
     var completionHandler: ((String) -> ())?
+    var sourceLanguage: String?
+    var targetLanguage: String?
     
     func getTranslation(for input: String) {
                 
         let azureKey = "7118478ba5e34a56964d996d3f2a1689"
         let location = "northeurope"
-        let selectedFromLangCode = "en"
-        let selectedToLangCode = "ru"
+        let selectedFromLangCode = sourceLanguage ?? "en"
+        let selectedToLangCode = targetLanguage ?? "ru"
         
         struct encodeText: Codable {
             var text = String()
