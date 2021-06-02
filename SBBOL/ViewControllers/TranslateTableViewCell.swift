@@ -16,6 +16,15 @@ class TranslateTableViewCell: UITableViewCell, UITextViewDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         textView.delegate = self
+        
+        //Add done button to numeric pad keyboard
+        let toolbarDone = UIToolbar.init()
+        toolbarDone.sizeToFit()
+        let barBtnDone = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.done,
+                                              target: self, action: #selector(dismissKeyboard))
+        toolbarDone.items = [barBtnDone]
+        textView.inputAccessoryView = toolbarDone
+        
     }
     
     func textChanged(action: @escaping (String) -> Void) {
@@ -25,10 +34,9 @@ class TranslateTableViewCell: UITableViewCell, UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         textChanged?(textView.text)
     }
-    
-    // instant word translation
-//    func textViewDidChange(_ textView: UITextView) {
-//        textChanged?(textView.text)
-//    }
+        
+    @objc func dismissKeyboard() {
+        textView.endEditing(true)
+    }
     
 }

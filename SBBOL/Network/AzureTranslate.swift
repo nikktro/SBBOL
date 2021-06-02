@@ -13,13 +13,14 @@ class AzureTranslate {
     var completionHandler: ((String) -> ())?
     var sourceLanguage: String?
     var targetLanguage: String?
+    let languageDict = ["English" : "en", "Русский" : "ru", "German" : "de"]
     
     func getTranslation(for input: String) {
                 
         let azureKey = "7118478ba5e34a56964d996d3f2a1689"
         let location = "northeurope"
-        let selectedFromLangCode = sourceLanguage ?? "en"
-        let selectedToLangCode = targetLanguage ?? "ru"
+        let selectedFromLangCode = languageDict[sourceLanguage ?? "English"] ?? "en"
+        let selectedToLangCode = languageDict[targetLanguage ?? "Русский"] ?? "ru"
         
         struct encodeText: Codable {
             var text = String()

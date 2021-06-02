@@ -29,8 +29,8 @@ class TranslateTableViewController: UIViewController {
         coreData.fetchData()
         textToTranslate = (coreData.translates.last?.source) ?? "Enter text to translate"
         translatedText = (coreData.translates.last?.target) ?? "Tap to translate"
-        sourceLanguageButton.setTitle("en", for: .normal)
-        targetLanguageButton.setTitle("ru", for: .normal)
+        sourceLanguageButton.setTitle("English", for: .normal)
+        targetLanguageButton.setTitle("Русский", for: .normal)
     }
 
     func hideKeyboardWhenTappedAround() {

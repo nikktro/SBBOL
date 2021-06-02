@@ -205,14 +205,9 @@
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wTa-Ej-htL">
                                         <rect key="frame" x="0.0" y="109" width="414" height="712"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search" id="EAO-cd-5Ii">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </searchBar>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="history" rowHeight="60" id="W5N-1n-dX3" customClass="HistoryCell" customModule="SBBOL" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="68.5" width="414" height="60"/>
+                                                <rect key="frame" x="0.0" y="24.5" width="414" height="60"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="W5N-1n-dX3" id="WEr-Ai-vkT">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
@@ -272,8 +267,9 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="wTa-Ej-htL" secondAttribute="trailing" id="6HD-L3-QPq"/>
                                     <constraint firstItem="yRS-ep-Kv8" firstAttribute="top" secondItem="t89-1p-enK" secondAttribute="top" constant="65" id="8u1-8s-9My"/>
-                                    <constraint firstItem="wTa-Ej-htL" firstAttribute="top" secondItem="yRS-ep-Kv8" secondAttribute="bottom" id="FOK-Nr-oSO"/>
+                                    <constraint firstItem="wTa-Ej-htL" firstAttribute="top" secondItem="yRS-ep-Kv8" secondAttribute="bottom" id="DRe-Af-QhV"/>
                                     <constraint firstItem="yRS-ep-Kv8" firstAttribute="leading" secondItem="t89-1p-enK" secondAttribute="leading" id="Lso-Dm-FVw"/>
+                                    <constraint firstAttribute="bottom" secondItem="wTa-Ej-htL" secondAttribute="bottom" id="Vsf-aW-hyy"/>
                                     <constraint firstItem="yRS-ep-Kv8" firstAttribute="centerX" secondItem="wTa-Ej-htL" secondAttribute="centerX" id="eY5-AN-WJw"/>
                                     <constraint firstItem="wTa-Ej-htL" firstAttribute="leading" secondItem="t89-1p-enK" secondAttribute="leading" id="hqb-M3-lBn"/>
                                     <constraint firstAttribute="bottom" secondItem="wTa-Ej-htL" secondAttribute="bottom" id="pwj-b4-vo9"/>
