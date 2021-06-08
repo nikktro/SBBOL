@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20E241" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Language" representedClassName="Language" syncable="YES" codeGenerationType="class">
-        <attribute name="source" optional="YES" attributeType="String"/>
-        <attribute name="target" optional="YES" attributeType="String"/>
-    </entity>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Translate" representedClassName="Translate" syncable="YES" codeGenerationType="class">
+        <attribute name="selectIndex" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="source" optional="YES" attributeType="String"/>
         <attribute name="target" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Language" positionX="-54" positionY="-9" width="128" height="59"/>
-        <element name="Translate" positionX="-63" positionY="-18" width="128" height="59"/>
+        <element name="Translate" positionX="-63" positionY="-18" width="128" height="74"/>
     </elements>
 </model>

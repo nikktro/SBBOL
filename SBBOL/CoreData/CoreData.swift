@@ -8,10 +8,10 @@
 import UIKit
 import CoreData
 
-class CoreData {
+final class CoreData {
     
     var translates: [Translate] = []
-    let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     
     /// Save to core date
@@ -46,7 +46,7 @@ class CoreData {
     }
     
     /// Remove from core data
-    func remove(at index: Int) {
+    private func remove(at index: Int) {
         //let fetchRequest: NSFetchRequest<Translate> = Translate.fetchRequest()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Translate")
         
@@ -63,7 +63,7 @@ class CoreData {
     }
     
     /// Edit core data property
-    func editData(_ translate: String, for index: Int) {
+    private func editData(_ translate: String, for index: Int) {
         managedContext.setValue(translate, forKey: "name")
         do {
             try managedContext.save()

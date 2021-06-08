@@ -8,12 +8,12 @@
 import Foundation
 import UIKit
 
-class AzureTranslate {
+final class AzureTranslate {
     
     var completionHandler: ((String) -> ())?
     var sourceLanguage: String?
     var targetLanguage: String?
-    let languageDict = ["English" : "en", "Русский" : "ru", "German" : "de"]
+    private let languageDict = ["English" : "en", "Русский" : "ru", "German" : "de"]
     
     func getTranslation(for input: String) {
                 
@@ -67,7 +67,7 @@ class AzureTranslate {
     }
     
     
-    func parseJson(jsonData: Data) {
+    private func parseJson(jsonData: Data) {
         
         struct ReturnedJson: Codable {
             var translations: [TranslatedStrings]

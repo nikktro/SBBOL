@@ -7,12 +7,12 @@
 
 import UIKit
 
-class TranslateTableViewController: UIViewController {
+final class TranslateTableViewController: UIViewController {
 
-    var textToTranslate: String?
-    var translatedText: String?
-    let coreData = CoreData()
-    let azure = AzureTranslate()
+    private var textToTranslate: String?
+    private var translatedText: String?
+    private let coreData = CoreData()
+    private let azure = AzureTranslate()
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var sourceLanguageButton: UIButton!
@@ -25,15 +25,24 @@ class TranslateTableViewController: UIViewController {
         tableView.layer.cornerRadius = 10
         self.hideKeyboardWhenTappedAround()
         
-        //coreData.deleteAllData()
         coreData.fetchData()
         textToTranslate = (coreData.translates.last?.source) ?? "Enter text to translate"
         translatedText = (coreData.translates.last?.target) ?? "Tap to translate"
         sourceLanguageButton.setTitle("English", for: .normal)
         targetLanguageButton.setTitle("Русский", for: .normal)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        coreData.fetchData()
+        guard let index = coreData.translates.last?.selectIndex else { return }
+        textToTranslate = coreData.translates[Int(index)].source
+        translatedText = coreData.translates[Int(index)].target
+        tableView.reloadData()
+    }
 
-    func hideKeyboardWhenTappedAround() {
+    private func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
     }

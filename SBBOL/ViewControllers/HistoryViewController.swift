@@ -9,17 +9,18 @@ import UIKit
 
 class HistoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    private let refreshControl = UIRefreshControl()
     @IBOutlet weak var tableView: UITableView!
     
-    let coreData = CoreData()
-    var fileteredCoreData: [Translate] = []
-    let searchController = UISearchController(searchResultsController: nil)
+    private let coreData = CoreData()
+    private var fileteredCoreData: [Translate] = []
+    private let searchController = UISearchController(searchResultsController: nil)
     
-    var isSearchBarEmpty: Bool {
+    private var isSearchBarEmpty: Bool {
       return searchController.searchBar.text?.isEmpty ?? true
     }
     
-    var isFiltering: Bool {
+    private var isFiltering: Bool {
       return searchController.isActive && !isSearchBarEmpty
     }
     
@@ -34,10 +35,13 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search"
         tableView.tableHeaderView = searchController.searchBar
+        
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        tableView.addSubview(refreshControl)
     }
     
     
-    func filterContentForSearchText(_ searchText: String) {
+    private func filterContentForSearchText(_ searchText: String) {
         fileteredCoreData = coreData.translates.filter { (translate: Translate) -> Bool in
             return translate.source?.lowercased().contains(searchText.lowercased()) ?? false || translate.target?.lowercased().contains(searchText.lowercased()) ?? false
         }
@@ -50,13 +54,21 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.reloadData()
     }
     
-    func hideKeyboardWhenTappedAround() {
+    private func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
     
     @objc func dismissKeyboard() {
+        searchController.searchBar.resignFirstResponder()
         view.endEditing(true)
+    }
+    
+    @objc func refresh(_ sender: AnyObject) {
+        coreData.fetchData()
+        tableView.reloadData()
+        refreshControl.endRefreshing()
     }
 
 
@@ -84,6 +96,11 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         return cell
     }
     
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        coreData.translates.last?.selectIndex = Int64(indexPath.row)
+        tabBarController?.selectedIndex = 0
+    }
     
 // MARK: - IBAction
         
