@@ -7,11 +7,11 @@
 
 import UIKit
 
-class ChangeLanguageViewController: UIViewController {
+final class ChangeLanguageViewController: UIViewController {
     
     private let languages = ["English", "Русский", "German"]
     
-    var languageTitle: String!
+    var languageTitle: String?
     var languageHandler: ((String) -> ())?
     
     @IBOutlet weak var tableView: UITableView!
@@ -22,22 +22,23 @@ class ChangeLanguageViewController: UIViewController {
         navigationTitle.title = languageTitle
     }
     
-
+    // MARK: - IBAction
+    @IBAction func closeButtronPressed(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
 }
 
+// MARK: - Table view data source
 extension ChangeLanguageViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    // MARK: - Table view data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return languages.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "languageList", for: indexPath)
-
+        
         cell.textLabel?.text = languages[indexPath.row]
-
+        
         return cell
     }
     
@@ -45,12 +46,5 @@ extension ChangeLanguageViewController: UITableViewDataSource, UITableViewDelega
         let language = languages[indexPath.row]
         dismiss(animated: true, completion: { self.languageHandler!(language) } )
     }
-
-
-    // MARK: - IBAction
-
-    @IBAction func closeButtronPressed(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
-    }
-
+    
 }

@@ -7,9 +7,9 @@
 
 import UIKit
 
-class HistoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+final class HistoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    private let refreshControl = UIRefreshControl()
+    private let refreshControl = UIRefreshControl(frame: .zero)
     @IBOutlet weak var tableView: UITableView!
     
     private let coreData = CoreData()
@@ -17,11 +17,11 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     private let searchController = UISearchController(searchResultsController: nil)
     
     private var isSearchBarEmpty: Bool {
-      return searchController.searchBar.text?.isEmpty ?? true
+        return searchController.searchBar.text?.isEmpty ?? true
     }
     
     private var isFiltering: Bool {
-      return searchController.isActive && !isSearchBarEmpty
+        return searchController.isActive && !isSearchBarEmpty
     }
     
     
@@ -29,7 +29,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        self.hideKeyboardWhenTappedAround()
+        hideKeyboardWhenTappedAround()
         
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -37,13 +37,15 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.tableHeaderView = searchController.searchBar
         
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        refreshControl.backgroundColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
         tableView.addSubview(refreshControl)
     }
     
     
     private func filterContentForSearchText(_ searchText: String) {
         fileteredCoreData = coreData.translates.filter { (translate: Translate) -> Bool in
-            return translate.source?.lowercased().contains(searchText.lowercased()) ?? false || translate.target?.lowercased().contains(searchText.lowercased()) ?? false
+            return translate.source?.lowercased().contains(searchText.lowercased()) ?? false
+                || translate.target?.lowercased().contains(searchText.lowercased()) ?? false
         }
         tableView.reloadData()
     }
@@ -55,7 +57,8 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     private func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        let tap: UITapGestureRecognizer =
+            UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
@@ -70,12 +73,12 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.reloadData()
         refreshControl.endRefreshing()
     }
-
-
-// MARK: - Table view data source    
+    
+    
+    // MARK: - Table view data source    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering {
-          return fileteredCoreData.count
+            return fileteredCoreData.count
         }
         return coreData.translates.count
     }
@@ -83,8 +86,9 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let translate: Translate
-        let cell = tableView.dequeueReusableCell(withIdentifier: "history", for: indexPath) as! HistoryCell
-                
+        let cell = tableView.dequeueReusableCell(withIdentifier: "history",
+                                                 for: indexPath) as! HistoryCell
+        
         if isFiltering {
             translate = fileteredCoreData[indexPath.row]
         } else {
@@ -102,8 +106,8 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         tabBarController?.selectedIndex = 0
     }
     
-// MARK: - IBAction
-        
+    // MARK: - IBAction
+    
     @IBAction func DeleteHistoryData(_ sender: UIBarButtonItem) {
         coreData.deleteAllData()
         coreData.fetchData()
@@ -115,8 +119,8 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
 
 // MARK: - SearchBar
 extension HistoryViewController: UISearchResultsUpdating {
-  func updateSearchResults(for searchController: UISearchController) {
-    let searchBar = searchController.searchBar
-    filterContentForSearchText(searchBar.text ?? "")
-  }
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        filterContentForSearchText(searchBar.text ?? "")
+    }
 }

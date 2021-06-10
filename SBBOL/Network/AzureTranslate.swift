@@ -16,7 +16,7 @@ final class AzureTranslate {
     private let languageDict = ["English" : "en", "Русский" : "ru", "German" : "de"]
     
     func getTranslation(for input: String) {
-                
+        
         let azureKey = "7118478ba5e34a56964d996d3f2a1689"
         let location = "northeurope"
         let selectedFromLangCode = languageDict[sourceLanguage ?? "English"] ?? "en"
@@ -29,7 +29,8 @@ final class AzureTranslate {
         let contentType = "application/json"
         let traceID = "A14C9DB9-0DED-48D7-8BBE-C517A1A8DBB0"
         let host = "dev.microsofttranslator.com"
-        let apiURL = "https://dev.microsofttranslator.com/translate?api-version=3.0&from=" + selectedFromLangCode + "&to=" + selectedToLangCode
+        let apiURL = "https://dev.microsofttranslator.com/translate?api-version=3.0&from=" +
+            selectedFromLangCode + "&to=" + selectedToLangCode
         
         var encodeTextSingle = encodeText()
         var toTranslate = [encodeText]()
@@ -48,7 +49,8 @@ final class AzureTranslate {
         request.addValue(contentType, forHTTPHeaderField: "Content-Type")
         request.addValue(traceID, forHTTPHeaderField: "X-ClientTraceID")
         request.addValue(host, forHTTPHeaderField: "Host")
-        request.addValue(String(describing: jsonToTranslate?.count), forHTTPHeaderField: "Content-Length")
+        request.addValue(String(describing: jsonToTranslate?.count),
+                         forHTTPHeaderField: "Content-Length")
         request.httpBody = jsonToTranslate
         
         let config = URLSessionConfiguration.default
@@ -57,7 +59,10 @@ final class AzureTranslate {
         let task = session.dataTask(with: request) { (responseData, response, responseError) in
             if responseError != nil {
                 print("this is the error ", responseError!)
-                let alert = UIAlertController(title: "Could not connect to service", message: "Please check your network connection and try again", preferredStyle: .actionSheet)
+                let alert = UIAlertController(
+                    title: "Could not connect to service",
+                    message: "Please check your network connection and try again",
+                    preferredStyle: .actionSheet)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 alert.present(alert, animated: true)
             }
@@ -81,7 +86,6 @@ final class AzureTranslate {
         let langTranslations = try? jsonDecoder.decode(Array<ReturnedJson>.self, from: jsonData)
         let numberOfTranslations = langTranslations!.count - 1
         
-        //Put response on main thread to update UI
         DispatchQueue.main.async {
             let translatedText = langTranslations![0].translations[numberOfTranslations].text
             self.completionHandler?(translatedText)

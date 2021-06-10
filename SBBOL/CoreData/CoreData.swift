@@ -11,20 +11,20 @@ import CoreData
 final class CoreData {
     
     var translates: [Translate] = []
-    private let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private let managedContext = (UIApplication.shared.delegate
+                                    as! AppDelegate).persistentContainer.viewContext
     
     
-    /// Save to core date
     func saveData(_ source: String, _ target: String) {
         
-        // Entity name
-        guard let entityDescription = NSEntityDescription.entity(forEntityName: "Translate", in: managedContext) else { return }
+        guard let entityDescription = NSEntityDescription.entity(
+                forEntityName: "Translate", in: managedContext) else { return }
         
-        // Model instance
-        let translate = NSManagedObject(entity: entityDescription, insertInto: managedContext) as! Translate
+        let translate = NSManagedObject(entity: entityDescription,
+                                        insertInto: managedContext) as? Translate
         
-        translate.source = source
-        translate.target = target
+        translate?.source = source
+        translate?.target = target
         
         do {
             try managedContext.save()
@@ -33,9 +33,7 @@ final class CoreData {
         }
     }
     
-    /// Fetch from core data
     func fetchData() {
-        // fetch request from the database of all values by key Translate
         let fetchRequest: NSFetchRequest<Translate> = Translate.fetchRequest()
         
         do {
@@ -45,14 +43,13 @@ final class CoreData {
         }
     }
     
-    /// Remove from core data
     private func remove(at index: Int) {
-        //let fetchRequest: NSFetchRequest<Translate> = Translate.fetchRequest()
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Translate")
+        let fetchRequest: NSFetchRequest<Translate> = Translate.fetchRequest()
         
         let result = try? managedContext.fetch(fetchRequest)
-        let resultData = result as! [NSManagedObject]
-        managedContext.delete(resultData[index])
+        if let resultData = result {
+            managedContext.delete(resultData[index])
+        }
         
         do {
             try managedContext.save()
@@ -62,7 +59,6 @@ final class CoreData {
         
     }
     
-    /// Edit core data property
     private func editData(_ translate: String, for index: Int) {
         managedContext.setValue(translate, forKey: "name")
         do {
@@ -73,14 +69,12 @@ final class CoreData {
     }
     
     func deleteAllData() {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Translate")
-        //fetchRequest.returnsObjectsAsFaults = false
+        let fetchRequest: NSFetchRequest<Translate> = Translate.fetchRequest()
         
         do {
             let results = try managedContext.fetch(fetchRequest)
             for object in results {
-                guard let objectData = object as? NSManagedObject else { continue }
-                managedContext.delete(objectData)
+                managedContext.delete(object)
             }
         } catch let error {
             print(error.localizedDescription)
