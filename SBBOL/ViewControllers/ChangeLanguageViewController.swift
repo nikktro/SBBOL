@@ -9,7 +9,7 @@ import UIKit
 
 final class ChangeLanguageViewController: UIViewController {
     
-    private let languages = ["English", "Русский", "German"]
+    private let languages = TranslateLanguages.allCases.map { $0.rawValue }
     
     var languageTitle: String?
     var languageHandler: ((String) -> ())?

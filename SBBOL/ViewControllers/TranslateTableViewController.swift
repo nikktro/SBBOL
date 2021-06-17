@@ -75,9 +75,11 @@ extension TranslateTableViewController: UITableViewDataSource, UITableViewDelega
         if indexPath.row % 2 == 0 {
             cell.textView.text = textToTranslate
             cell.textDidChange { [weak self] (inputed: String) in
-                self?.azure.sourceLanguage = self?.sourceLanguageButton.titleLabel?.text
-                self?.azure.targetLanguage = self?.targetLanguageButton.titleLabel?.text
-                self?.azure.getTranslation(for: inputed)
+                guard let sourceLanguage = self?.sourceLanguageButton.titleLabel?.text else { return }
+                guard let targetLanguage = self?.targetLanguageButton.titleLabel?.text else { return }
+                self?.azure.getTranslation(for: inputed,
+                                           sourceLanguage: sourceLanguage,
+                                           targetLanguage: targetLanguage)
                 self?.azure.completionHandler = { [weak self] translated in
                     self?.textToTranslate = inputed
                     self?.translatedText = translated
@@ -99,13 +101,11 @@ extension TranslateTableViewController: UITableViewDataSource, UITableViewDelega
                 changeLanguage.languageTitle = "Source language"
                 changeLanguage.languageHandler = { language in
                     self.sourceLanguageButton.setTitle(language, for: .normal)
-                    self.azure.sourceLanguage = language
                 }
             } else if segue.identifier == "target" {
                 changeLanguage.languageTitle = "Target language"
                 changeLanguage.languageHandler = { language in
                     self.targetLanguageButton.setTitle(language, for: .normal)
-                    self.azure.targetLanguage = language
                 }
             }
         }

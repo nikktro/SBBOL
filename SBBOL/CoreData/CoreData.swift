@@ -29,7 +29,7 @@ final class CoreData {
         do {
             try managedContext.save()
         } catch let error {
-            print(error.localizedDescription)
+            print(error.localizedDescription) // TODO: add error handler
         }
     }
     
@@ -39,7 +39,7 @@ final class CoreData {
         do {
             try translates = managedContext.fetch(fetchRequest)
         } catch let error {
-            print(error.localizedDescription)
+            print(error.localizedDescription) // TODO: add error handler
         }
     }
     
@@ -54,7 +54,7 @@ final class CoreData {
         do {
             try managedContext.save()
         } catch let error {
-            print(error.localizedDescription)
+            print(error.localizedDescription) // TODO: add error handler
         }
         
     }
@@ -64,7 +64,7 @@ final class CoreData {
         do {
             try managedContext.save()
         } catch let error {
-            print(error.localizedDescription)
+            print(error.localizedDescription) // TODO: add error handler
         }
     }
     
@@ -77,13 +77,13 @@ final class CoreData {
                 managedContext.delete(object)
             }
         } catch let error {
-            print(error.localizedDescription)
+            print(error.localizedDescription) // TODO: add error handler
         }
         
         do {
             try managedContext.save()
         } catch let error {
-            print(error.localizedDescription)
+            print(error.localizedDescription) // TODO: add error handler
         }
     }
     

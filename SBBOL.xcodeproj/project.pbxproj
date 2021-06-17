@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B172141D266FA11A007A598C /* AnimationTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B172141C266FA11A007A598C /* AnimationTabBarController.swift */; };
+		B19766A7267AB8F400BADE03 /* TranslateLanguages.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19766A6267AB8F400BADE03 /* TranslateLanguages.swift */; };
+		B19766A9267AC95300BADE03 /* ReturnedJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19766A8267AC95300BADE03 /* ReturnedJson.swift */; };
 		B197E8972672433600889BF7 /* TabBarAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = B197E8962672433600889BF7 /* TabBarAnimatedTransitioning.swift */; };
 		B1B9B70D26602C820064F3F2 /* ChangeLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B9B70C26602C820064F3F2 /* ChangeLanguageViewController.swift */; };
 		B1C8BAAC264DC83E004C69E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C8BAAB264DC83E004C69E7 /* AppDelegate.swift */; };
@@ -26,6 +28,8 @@
 
 /* Begin PBXFileReference section */
 		B172141C266FA11A007A598C /* AnimationTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationTabBarController.swift; sourceTree = "<group>"; };
+		B19766A6267AB8F400BADE03 /* TranslateLanguages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateLanguages.swift; sourceTree = "<group>"; };
+		B19766A8267AC95300BADE03 /* ReturnedJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReturnedJson.swift; sourceTree = "<group>"; };
 		B197E8962672433600889BF7 /* TabBarAnimatedTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarAnimatedTransitioning.swift; sourceTree = "<group>"; };
 		B1B9B70C26602C820064F3F2 /* ChangeLanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLanguageViewController.swift; sourceTree = "<group>"; };
 		B1C8BAA8264DC83E004C69E7 /* SBBOL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SBBOL.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				B1E5111F26510EDE006E9E94 /* AzureTranslate.swift */,
+				B19766A8267AC95300BADE03 /* ReturnedJson.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -99,6 +104,7 @@
 		B1E5111926508F96006E9E94 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B19766A6267AB8F400BADE03 /* TranslateLanguages.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -230,7 +236,9 @@
 			files = (
 				B197E8972672433600889BF7 /* TabBarAnimatedTransitioning.swift in Sources */,
 				B172141D266FA11A007A598C /* AnimationTabBarController.swift in Sources */,
+				B19766A7267AB8F400BADE03 /* TranslateLanguages.swift in Sources */,
 				B1B9B70D26602C820064F3F2 /* ChangeLanguageViewController.swift in Sources */,
+				B19766A9267AC95300BADE03 /* ReturnedJson.swift in Sources */,
 				B1E5112026510EDE006E9E94 /* AzureTranslate.swift in Sources */,
 				B1C8BAB6264DC83E004C69E7 /* SBBOL.xcdatamodeld in Sources */,
 				B1E51124265174CA006E9E94 /* TranslateTableViewCell.swift in Sources */,
