@@ -15,7 +15,7 @@ final class CoreData {
                                     as! AppDelegate).persistentContainer.viewContext
     
     
-    func saveData(_ source: String, _ target: String) {
+    func saveData(_ source: String, _ target: String, _ sourceLanguage: String, _ targetLanguage: String) {
         
         guard let entityDescription = NSEntityDescription.entity(
                 forEntityName: "Translate", in: managedContext) else { return }
@@ -25,6 +25,9 @@ final class CoreData {
         
         translate?.source = source
         translate?.target = target
+        translate?.sourceLang = sourceLanguage
+        translate?.targetLang = targetLanguage
+        translate?.date = Date()
         
         do {
             try managedContext.save()
@@ -35,6 +38,7 @@ final class CoreData {
     
     func fetchData() {
         let fetchRequest: NSFetchRequest<Translate> = Translate.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         
         do {
             try translates = managedContext.fetch(fetchRequest)

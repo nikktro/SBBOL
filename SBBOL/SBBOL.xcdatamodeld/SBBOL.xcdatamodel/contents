@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Translate" representedClassName="Translate" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="selectIndex" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="source" optional="YES" attributeType="String"/>
+        <attribute name="sourceLang" optional="YES" attributeType="String"/>
         <attribute name="target" optional="YES" attributeType="String"/>
+        <attribute name="targetLang" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Translate" positionX="-63" positionY="-18" width="128" height="74"/>
+        <element name="Translate" positionX="-63" positionY="-18" width="128" height="119"/>
     </elements>
 </model>

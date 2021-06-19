@@ -40,6 +40,8 @@ final class TranslateTableViewController: UIViewController {
         guard let index = coreData.translates.last?.selectIndex else { return }
         textToTranslate = coreData.translates[Int(index)].source
         translatedText = coreData.translates[Int(index)].target
+        sourceLanguageButton.setTitle(coreData.translates[Int(index)].sourceLang, for: .normal)
+        targetLanguageButton.setTitle(coreData.translates[Int(index)].targetLang, for: .normal)
         tableView.reloadData()
     }
     
@@ -83,7 +85,7 @@ extension TranslateTableViewController: UITableViewDataSource, UITableViewDelega
                 self?.azure.completionHandler = { [weak self] translated in
                     self?.textToTranslate = inputed
                     self?.translatedText = translated
-                    self?.coreData.saveData(inputed, translated)
+                    self?.coreData.saveData(inputed, translated, sourceLanguage, targetLanguage)
                     tableView.reloadRows(at: [IndexPath(item: 1, section: 0)], with: .automatic)
                 }
             }
