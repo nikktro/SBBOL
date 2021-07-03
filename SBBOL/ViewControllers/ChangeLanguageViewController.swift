@@ -44,7 +44,7 @@ extension ChangeLanguageViewController: UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let language = languages[indexPath.row]
-        dismiss(animated: true, completion: { self.languageHandler!(language) } )
+        dismiss(animated: true, completion: { self.languageHandler?(language) } )
     }
     
 }

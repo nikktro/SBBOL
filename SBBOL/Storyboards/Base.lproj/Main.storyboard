@@ -21,30 +21,32 @@
                                 <rect key="frame" x="0.0" y="-8" width="414" height="821"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="Lpm-L4-x2M">
-                                        <rect key="frame" x="117" y="75" width="180" height="30"/>
+                                        <rect key="frame" x="109" y="75" width="196" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sxV-gG-bw6">
-                                                <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="60" height="30"/>
                                                 <state key="normal" title="English">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
+                                                    <action selector="sourceLanguageButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lrz-S0-0nI"/>
                                                     <segue destination="jJ2-GM-jl8" kind="show" identifier="source" id="7fh-cO-9gG"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tql-RX-nWQ">
-                                                <rect key="frame" x="76" y="0.0" width="24" height="30"/>
+                                                <rect key="frame" x="86" y="0.0" width="24" height="30"/>
                                                 <state key="normal" image="icons8-resize-horizontal-24"/>
                                                 <connections>
                                                     <action selector="toggleLanguageButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="5LI-3v-HSg"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3J8-Fy-fz1">
-                                                <rect key="frame" x="126" y="0.0" width="54" height="30"/>
-                                                <state key="normal" title="Russian">
+                                                <rect key="frame" x="136" y="0.0" width="60" height="30"/>
+                                                <state key="normal" title="Русский">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
+                                                    <action selector="sourceLanguageButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0rQ-Ms-AxV"/>
                                                     <segue destination="jJ2-GM-jl8" kind="show" identifier="target" id="zoi-WL-MwC"/>
                                                 </connections>
                                             </button>
@@ -102,6 +104,7 @@
                                     <constraint firstAttribute="trailingMargin" secondItem="ahj-Xr-qBE" secondAttribute="trailing" id="kW3-si-wUn"/>
                                     <constraint firstItem="Lpm-L4-x2M" firstAttribute="top" secondItem="Eat-Eh-HCz" secondAttribute="top" constant="75" id="pLE-Ay-oip"/>
                                     <constraint firstItem="ahj-Xr-qBE" firstAttribute="leading" secondItem="Eat-Eh-HCz" secondAttribute="leadingMargin" id="qof-L2-xD9"/>
+                                    <constraint firstItem="Tql-RX-nWQ" firstAttribute="centerX" secondItem="Eat-Eh-HCz" secondAttribute="centerX" id="vKS-rE-ybh"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -115,6 +118,7 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="icons8-translation-25" id="gbM-8U-xNw"/>
+                    <navigationItem key="navigationItem" id="V6U-Fn-wNs"/>
                     <connections>
                         <outlet property="sourceLanguageButton" destination="sxV-gG-bw6" id="gQx-zV-glh"/>
                         <outlet property="tableView" destination="ahj-Xr-qBE" id="oeU-XZ-1yH"/>
@@ -239,8 +243,8 @@
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
-                                                    <outlet property="inputTextLabel" destination="7k1-2A-dkO" id="giO-ZG-CzG"/>
-                                                    <outlet property="translatedTextLabel" destination="nvU-JB-B89" id="mSm-Fl-ePN"/>
+                                                    <outlet property="inputTextLabel" destination="7k1-2A-dkO" id="6Ah-xu-ofB"/>
+                                                    <outlet property="translatedTextLabel" destination="nvU-JB-B89" id="cK1-O6-0sj"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -256,7 +260,7 @@
                                                 <barButtonItem key="rightBarButtonItem" systemItem="trash" id="ztq-jk-JPV">
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <connections>
-                                                        <action selector="DeleteHistoryData:" destination="Nft-D5-EsZ" id="hNR-un-FoR"/>
+                                                        <action selector="DeleteHistoryData:" destination="Nft-D5-EsZ" id="SdC-9p-T4F"/>
                                                     </connections>
                                                 </barButtonItem>
                                             </navigationItem>
@@ -332,7 +336,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="7fh-cO-9gG"/>
+        <segue reference="zoi-WL-MwC"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="icons8-resize-horizontal-24" width="24" height="24"/>
