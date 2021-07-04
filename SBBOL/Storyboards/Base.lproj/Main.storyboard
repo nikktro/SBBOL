@@ -67,7 +67,7 @@
                                                             <rect key="frame" x="10" y="8" width="378" height="142"/>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <color key="textColor" systemColor="labelColor"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="23"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         </textView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y5A-Vz-0ju">
@@ -210,24 +210,24 @@
                                         <rect key="frame" x="0.0" y="109" width="414" height="712"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="history" rowHeight="60" id="W5N-1n-dX3" customClass="HistoryCell" customModule="SBBOL" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="24.5" width="414" height="60"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="history" rowHeight="50" id="W5N-1n-dX3" customClass="HistoryCell" customModule="SBBOL" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="24.5" width="414" height="50"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="W5N-1n-dX3" id="WEr-Ai-vkT">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="mJh-Sb-soO">
-                                                            <rect key="frame" x="20" y="11" width="374" height="38"/>
+                                                            <rect key="frame" x="20" y="11" width="374" height="28"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Entered" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7k1-2A-dkO">
-                                                                    <rect key="frame" x="0.0" y="6" width="177" height="26.5"/>
+                                                                    <rect key="frame" x="0.0" y="1" width="177" height="26.5"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Translated" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nvU-JB-B89">
-                                                                    <rect key="frame" x="197" y="6" width="177" height="26.5"/>
+                                                                    <rect key="frame" x="197" y="1" width="177" height="26.5"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>

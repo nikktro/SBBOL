@@ -17,7 +17,7 @@ final class TranslateTableViewCell: UITableViewCell, UITextViewDelegate {
         super.awakeFromNib()
         textView.delegate = self
         
-        let toolbarDone = UIToolbar()
+        let toolbarDone = UIToolbar(frame:CGRect(x:0, y:0, width:100, height:100))
         toolbarDone.sizeToFit()
         let barBtnDone = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.done,
                                               target: self,

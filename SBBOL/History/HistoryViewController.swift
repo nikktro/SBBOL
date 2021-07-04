@@ -19,17 +19,32 @@ final class HistoryViewController: UIViewController {
     
     private let configurator: HistoryConfiguratorProtocol = HistoryConfigurator()
     
+    private let searchController = UISearchController(searchResultsController: nil)
+    
+    private var isSearchBarEmpty: Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    private var isFiltering: Bool {
+        return searchController.isActive && !isSearchBarEmpty
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configurator.configure(with: self)
-        presenter.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search"
+        tableView.tableHeaderView = searchController.searchBar
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(animated)
-        presenter.viewDidLoad()
+        presenter.viewWillAppear()
     }
 
     
@@ -43,6 +58,9 @@ final class HistoryViewController: UIViewController {
 // MARK: - UITableViewDataSource
 extension HistoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isFiltering {
+            return presenter.fileteredTranslatesCount ?? 0
+        }
         return presenter.translatesCount ?? 0
     }
         
@@ -50,7 +68,15 @@ extension HistoryViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "history",
                                                  for: indexPath) as! HistoryCell
         
-        guard let translate = presenter.translate(atIndex: indexPath) else {
+        var translate: Translate?
+        
+        if isFiltering {
+            translate = presenter.filteredTranslate(atIndex: indexPath)
+        } else {
+            translate = presenter.translate(atIndex: indexPath)
+        }
+        
+        guard let translate = translate else {
             return UITableViewCell()
         }
         
@@ -61,7 +87,7 @@ extension HistoryViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44
+        return 50
     }
     
 }
@@ -80,5 +106,13 @@ extension HistoryViewController: HistoryViewProtocol {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+    }
+}
+
+// MARK: - UISearchResultsUpdating
+extension HistoryViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        presenter.filterContentForSearchText(searchBar.text ?? "")
     }
 }

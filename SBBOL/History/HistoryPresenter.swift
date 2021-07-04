@@ -11,11 +11,15 @@ import Foundation
 protocol HistoryPresenterProtocol: AnyObject {
     var translates: [Translate] { get }
     var translatesCount: Int? { get }
+    var fileteredTranslates: [Translate] { get }
+    var fileteredTranslatesCount: Int? { get }
     
-    func viewDidLoad()
+    func viewWillAppear()
     func translate(atIndex indexPath: IndexPath) -> Translate?
+    func filteredTranslate(atIndex indexPath: IndexPath) -> Translate?
     func showTranslateTable(for indexPath: IndexPath)
     func deleteAllData()
+    func filterContentForSearchText(_ searchText: String)
 }
 
 final class HistoryPresenter {
@@ -23,14 +27,16 @@ final class HistoryPresenter {
     var interactor: HistoryInteractorProtocol!
     var router: HistoryRouterProtocol!
     
-    var translates: [Translate] = [] {
-        didSet {
-            view.reloadData()
-        }
-    }
+    var translates: [Translate] = []
     
     var translatesCount: Int? {
         return translates.count
+    }
+    
+    var fileteredTranslates: [Translate] = []
+    
+    var fileteredTranslatesCount: Int? {
+        return fileteredTranslates.count
     }
     
     required init(view: HistoryViewProtocol) {
@@ -41,13 +47,21 @@ final class HistoryPresenter {
 //MARK: - HistoryPresenterProtocol
 extension HistoryPresenter: HistoryPresenterProtocol {
     
-    func viewDidLoad() {
+    func viewWillAppear() {
         interactor.fetchTranslates()
     }
     
     func translate(atIndex indexPath: IndexPath) -> Translate? {
         if translates.indices.contains(indexPath.row) {
             return translates[indexPath.row]
+        } else {
+            return nil
+        }
+    }
+        
+    func filteredTranslate(atIndex indexPath: IndexPath) -> Translate? {
+        if fileteredTranslates.indices.contains(indexPath.row) {
+            return fileteredTranslates[indexPath.row]
         } else {
             return nil
         }
@@ -62,6 +76,14 @@ extension HistoryPresenter: HistoryPresenterProtocol {
     
     func deleteAllData() {
         CoreDataManager.instance.deleteAllData() // TODO: add confirmation
+        view.reloadData()
+    }
+    
+    func filterContentForSearchText(_ searchText: String) {
+        fileteredTranslates = translates.filter { (translate: Translate) -> Bool in
+            return translate.source?.lowercased().contains(searchText.lowercased()) ?? false
+                || translate.target?.lowercased().contains(searchText.lowercased()) ?? false
+        }
         view.reloadData()
     }
 }
